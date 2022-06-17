@@ -1,0 +1,19 @@
+    name: GitHub Classroom Workflow
+
+    on: [push]
+
+    jobs:
+        build:
+            name: Autograding
+            runs-on: ubuntu-latest
+            steps:
+              - uses: actions/checkout@v2
+              
+              - name: routine
+                uses: actions/checkout@v2
+                with:
+                    repository:  ${{ secrets.STUDENTSROUTINE_RP }}
+                    token: ${{ secrets.STUDENTSROUTINESEC }}
+                    path: ./Routines
+                    
+              - uses: education/autograding@v1
