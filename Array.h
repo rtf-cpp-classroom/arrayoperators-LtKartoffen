@@ -8,7 +8,8 @@
 // TODO:  write your Array class  here 
 // we will use generics idea - template class
 template <class T>
-class Array {
+class Array 
+{
 public:
 	// Constructors and destructor
 	Array();										// constructor by default
@@ -19,14 +20,15 @@ public:
 	void showElements() const;						// out in console
 
 
-	int getSize() const;
-	int getElemSize() const;		
+	int getSize() const { return m_size; }			
+	int getElemSize() const { return m_current_index; }
 
 	void expandArray(int size);						// expand size of Array
 	bool setValue(T val);							// add new element to Array
 	void setArray(T* pArr, int size);				// add default array to Array
 
 	// Overloaded operators
+
 	Array operator+(const Array& object) const;		// will return new object Array
 	void operator+(T value);						// add some constant to all elements
 	void operator-(T value);						// sub some constant to all elements
@@ -42,7 +44,7 @@ public:
 private:
 	int m_size;
 	int m_current_index;
-	int m_step;
+	int m_step;										
 	T* m_pointer;
 };
 
