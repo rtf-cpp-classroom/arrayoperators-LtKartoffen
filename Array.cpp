@@ -58,14 +58,19 @@ bool Array<Item>::expandArray(int size)
 	m_step = size;
 	m_size += m_step;
 	if (m_pointer == nullptr)
-		m_pointer = new[m_size];
+		m_pointer = new Item[m_size];
 	else
 	{
-		Item* temp = new[m_size - m_step];
+		Item* temp = new Item[m_size - m_step];
 		// copy to temporary array values
 		for (int i = 0; i <= m_current_index; i++)
+			temp[i] = m_pointer[i];
+		delete[] m_pointer;
+		// create new array and fill the same values
+		m_pointer = new Item[m_size];
+		for (int i = 0; i <= m_current_index; i++)
 			m_pointer[i] = temp[i];
-		delete[] temp;
+		delete[] temp;				// free memory after using temporary-variable
 	}
 	return true;
 }
