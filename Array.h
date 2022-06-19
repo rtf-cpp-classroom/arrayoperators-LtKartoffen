@@ -2,7 +2,7 @@
 #ifndef ARRAY_H_
 #define ARRAY_H_
 #include <iostream>								// input-output array
-// TODO:  write your Array class  here 
+
 // we will use generics idea - template class
 template <class Item>
 class Array 
@@ -20,6 +20,7 @@ public:
 	int getSize() const { return m_size; }			
 	int getElemSize() const { return m_current_index +1; }
 
+	// Set some member value
 	bool expandArray(int size);							// expand size of Array
 	bool setValue(Item val);							// add new element to Array
 	bool setArray(Item* pArr, int size);				// add default array to Array
