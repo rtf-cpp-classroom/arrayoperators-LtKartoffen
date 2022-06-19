@@ -20,9 +20,9 @@ public:
 	int getSize() const { return m_size; }			
 	int getElemSize() const { return m_current_index +1; }
 
-	void expandArray(int size);							// expand size of Array
+	bool expandArray(int size);							// expand size of Array
 	bool setValue(Item val);							// add new element to Array
-	void setArray(Item* pArr, int size);				// add default array to Array
+	bool setArray(Item* pArr, int size);				// add default array to Array
 
 	// Overloaded operators
 	Array& operator=(const Array& object);			// very important assignment operator

@@ -1,9 +1,9 @@
 // Array.cpp -- realization of Array's methods
 #include "Array.h"
-// TODO:  write your Array  methods  here 
 
-// Consturctors, destructor and assignment operator
-//---------------------------------------------------//
+//--------------------------------------------------------------------------------------------//
+//---------------------Consturctors, destructor and assignment operator-----------------------//
+//--------------------------------------------------------------------------------------------//
 // Default constructor - initialization an object
 template <class Item>
 Array<Item>::Array()
@@ -16,7 +16,7 @@ template<class Item>
 Array<Item>::Array(const Array& object)
 {
 	m_size = object.getSize();
-	m_current_index = object.getElemSize - 1;
+	m_current_index = object.getElemSize() - 1;
 	if (m_current_index == 0)						// if Array empty
 		m_pointer = nullptr;
 	else
@@ -46,9 +46,34 @@ Array<Item>::~Array()
 	else
 		delete[] m_pointer;
 }
-//---------------------------------------------------//
-// Overloaded operators
-//---------------------------------------------------//
+//--------------------------------------------------------------------------------------------//
+//------------------------------- Other methods-----------------------------------------------//
+//--------------------------------------------------------------------------------------------//
+// Expand size of Array
+template <class Item>
+bool Array<Item>::expandArray(int size)
+{
+	if (size < 0)
+		return false;
+	m_step = size;
+	m_size += m_step;
+	if (m_pointer == nullptr)
+		m_pointer = new[m_size];
+	else
+	{
+		Item* temp = new[m_size - m_step];
+		// copy to temporary array values
+		for (int i = 0; i <= m_current_index; i++)
+			m_pointer[i] = temp[i];
+		delete[] temp;
+	}
+	return true;
+}
+// 
+
+//--------------------------------------------------------------------------------------------//
+//------------------------------- Overloaded operators----------------------------------------//
+//--------------------------------------------------------------------------------------------//
 // Get value from Array by index
 template<class Item>
 Item Array<Item>::operator[](int index) const
