@@ -60,7 +60,7 @@ int main()
 
 	cout << "\n\n\nar2: " << ar2;
 	ar2 += 1;
-	cout << "\n\n\nar2+=1: " << ar2;
+	cout << "\n\n\nar2+=1: "<<ar2;
 	//ar1.~Array();
 	//ar2.~Array();
 	cout << "\n\nCreate new Array-object by adding two Array-objects:\n";

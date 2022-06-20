@@ -201,6 +201,8 @@ void Array::showElements() const
 // Overloadaed operator << for more convinient output
 std::ostream& operator<<(std::ostream& os, const Array& object)
 {
-	object.showElements();
+	//object.showElements();
+	for (int i = 0; i < object.getElemSize(); i++)
+		std::cout << object.m_pointer[i] << " ";
 	return os;
 }
