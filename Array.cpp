@@ -39,8 +39,13 @@ Array& Array::operator=(const Array& object)
 Array::~Array()
 {
 	if (m_pointer == nullptr);
-	else
+	else 
+	{
 		delete[] m_pointer;
+		m_pointer = nullptr;
+	}
+	// for debugging 
+	//std::cout << "Memory after destructor deleted succesfully\n";
 }
 //--------------------------------------------------------------------------------------------//
 //----------------------------Set some member value------------------------------------------//
@@ -56,74 +61,56 @@ bool Array::expandArray(int size)
 		m_pointer = new Item[m_size];
 	else
 	{
-		Item* temp = new Item[m_size - m_step];
 		// copy to temporary array values
-		for (int i = 0; i <= m_current_index; i++)
+		Item* temp = new Item[m_size - m_step];
+		for (int i = 0; i < getElemSize(); i++)
 			temp[i] = m_pointer[i];
-		delete[] m_pointer;
+		delete[] m_pointer;						// delete old array
 		// create new array and fill the same values
 		m_pointer = new Item[m_size];
-		for (int i = 0; i <= m_current_index; i++)
+		for (int i = 0; i < getElemSize(); i++)
 			m_pointer[i] = temp[i];
 		delete[] temp;				// free memory after using temporary-variable
+		//m_current_index += m_step;
 	}
+	/*if (m_step == 1)
+		m_current_index++;
+	else
+		m_current_index += m_step - 1;*/
 	return true;
 }
 // Add new element to Array
-bool Array::setValue(Item value)
+void Array::setValue(Item value)
 {
-	m_size++;
-	if (m_pointer == nullptr)
-	{
-		m_pointer = new Item[m_size];
-		m_pointer[m_current_index] = value;
-		return true;
-	}
-	m_step = 1;
-	m_current_index++;
-	Item* temp = new Item[m_size - m_step];
-	// copy to temporary array values
-	for (int i = 0; i <= m_current_index; i++)
-		temp[i] = m_pointer[i];
-	delete[] m_pointer;
-	// create new array and fill the same values
-	m_pointer = new Item[m_size];
-	for (int i = 0; i < getElemSize(); i++)
-		m_pointer[i] = temp[i];
-	delete[] temp;				// free memory after using temporary-variable
-	return true;
+	// first we must expand our array for set some new value
+	this->expandArray(1);
+	if (getSize() == getElemSize());
+	else m_current_index++;
+	m_pointer[m_current_index] = value;
 }
 // add default array to Array 
-bool Array::setArray(Item* pArr, int size)
+void Array::setArray(Item* pArr, int size)
 {
-	m_step = size;
-	if (m_pointer == nullptr)
-	{
-		m_size += m_step;
-		m_current_index = size - 1;
-		m_pointer = new Item[m_size];
-		for (int i = 0; i < getElemSize(); i++)
-			m_pointer[i] = pArr[i];
-	}
-	else
-	{
-		// first, copy our values to temporary array
-		Item* temp = new Item[getElemSize() + m_step];
-		for (int i = 0; i < getElemSize(); i++)
-			temp[i] = m_pointer[i];
-		for (int i = getElemSize(), j = 0; i < getElemSize() + m_step, j < size; i++, j++)
-			temp[i] = pArr[j];
-		// rewrite new values and delete old memory
-		m_size = getElemSize() + m_step;
-		m_current_index = getSize() - 1;
-		delete[] m_pointer;
-		// create new array
-		m_pointer = new Item[m_size];
-		for (int i = 0; i < getElemSize(); i++)
-			m_pointer[i] = temp[i];
-		delete[] temp;				// free temp memory
-	}
-	return true;
+	//bool flag = this->expandArray(size);
+	//if (flag)					// if correct expanding array
+	//{
+	//	//int i = m_current_index + 1;
+	//	/*if (i == 0)
+	//		for (; i < getSize(); i++)
+	//			m_pointer[i] = pArr[i];
+	//	else
+	//		for (; i < getSize(); i++)
+	//			m_pointer[i] = pArr[i-m_current_index];*/
+	//	for (int i = m_current_index, j = 0; i < getSize(); i++, j++)
+	//		m_pointer[i] = pArr[j];
+	//	m_current_index = getSize() - 1;
+	//}
+	//else						// uncorrect expanding (size<0)
+	//	std::cerr << "Incorrect expanding array(size of array less 0). Process determinated.\n";
+	// 
+	// we will use cycle and set values by elements using setValue() function
+	for (int i = 0; i < size; i++)
+		this->setValue(pArr[i]);
 }
 //----------------------------------------------------------------------------------------------//
 //------------------------------- Overloaded operators-----------------------------------------//
@@ -146,8 +133,8 @@ bool Array::operator==(const Array& object) const
 		for (int i = 0; i < getElemSize(); i++)
 		{
 			flag = (m_pointer[i] == object.m_pointer[i]);
-			if (!flag)
-				return !flag;
+			if (flag == false)
+				return flag;
 		}
 	}
 	return flag;

@@ -21,9 +21,8 @@ public:
 	int getElemSize() const { return m_current_index +1; }
 
 	// Set some member value
-	bool expandArray(int size);							// expand size of Array
-	bool setValue(Item val);							// add new element to Array
-	bool setArray(Item* pArr, int size);				// add default array to Array
+	void setValue(Item val);							// add new element to Array
+	void setArray(Item* pArr, int size);				// add default array to Array
 
 	// Overloaded operators
 	Array& operator=(const Array& object);			// very important assignment operator
@@ -47,6 +46,9 @@ private:
 	int m_current_index;							// current index to last e-ment of Array
 	int m_step;										// how much increase size of Array 
 	Item* m_pointer;								// pointer to type
+	// Locked method for expanding size of array
+	// needed for setValue 
+	bool expandArray(int size);							// expand size of Array
 };
 
 #endif // !ARRAY_H_
