@@ -41,7 +41,7 @@ public:
 
 	// Friends functions
 	friend std::ostream& operator<<(std::ostream& os, const Array& object);		// out in console
-	friend void operator+(Item value, Array& object);
+	friend Array operator+(Item value, Array& object);
 private:
 	int m_size;										// maximum size of array(variable)
 	int m_current_index;							// current index to last e-ment of Array

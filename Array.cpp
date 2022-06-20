@@ -88,7 +88,7 @@ bool Array::setValue(Item value)
 	delete[] m_pointer;
 	// create new array and fill the same values
 	m_pointer = new Item[m_size];
-	for (int i = 0; i <= m_current_index; i++)
+	for (int i = 0; i < getElemSize(); i++)
 		m_pointer[i] = temp[i];
 	delete[] temp;				// free memory after using temporary-variable
 	return true;
@@ -111,7 +111,7 @@ bool Array::setArray(Item* pArr, int size)
 		Item* temp = new Item[getElemSize() + m_step];
 		for (int i = 0; i < getElemSize(); i++)
 			temp[i] = m_pointer[i];
-		for (int i = getElemSize(), int j = 0; i < getElemSize() + m_step, j < size; i++, j++)
+		for (int i = getElemSize(), j = 0; i < getElemSize() + m_step, j < size; i++, j++)
 			temp[i] = pArr[j];
 		// rewrite new values and delete old memory
 		m_size = getElemSize() + m_step;
