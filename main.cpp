@@ -45,22 +45,22 @@ int main()
 #endif // DEBUG
 	cout << "Post-increment operator, ar1++\n";
 	ar1++;
-	cout <<"ar1: " << ar1 << endl;
+	cout << "ar1: " << ar1;
 	//cout << "Destructors and ending program\n";
 
 	cout << "Create new array by adding value 7 to ar1\n";
 	Array ar3 = 7 + ar1;
-	cout << "ar3: " << ar3 << endl;
-	cout << "ar1: " << ar1 << endl;
+	cout << "ar3: " << ar3;
+	cout << "ar1: " << ar1;
 
 	cout << "Create new array by subtructing value 7 to ar2\n";
 	Array ar4 = ar2-7;
-	cout << "ar4: " << ar4 << endl;
-	cout << "ar2: " << ar2 << endl;
+	cout << "ar4: " << ar4;
+	cout << "ar2: " << ar2;
 
-	cout << "\n\n\nar2: " << ar2 << endl;
+	cout << "\n\n\nar2: " << ar2;
 	ar2 += 1;
-	cout << "\n\n\nar2+=1: "<<ar2 << endl;
+	cout << "\n\n\nar2+=1: " << ar2;
 	//ar1.~Array();
 	//ar2.~Array();
 	cout << "\n\nCreate new Array-object by adding two Array-objects:\n";
