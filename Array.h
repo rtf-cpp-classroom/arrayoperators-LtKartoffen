@@ -3,8 +3,8 @@
 #define ARRAY_H_
 #include <iostream>								// input-output array
 
-// we will use generics idea - template class
-template <class Item>
+typedef int Item;									// we will work with abstract type for Array - Item
+// Realization of dynamic array
 class Array 
 {
 public:
@@ -40,7 +40,7 @@ public:
 	Item operator[](int index) const;				// indexation
 
 	// Friends functions
-	friend std::ostream& operator<<(const std::ostream& os, const Array& object);	// out in console
+	friend std::ostream& operator<<(std::ostream& os, const Array& object);		// out in console
 	friend void operator+(Item value, Array& object);
 private:
 	int m_size;										// maximum size of array(variable)
