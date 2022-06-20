@@ -28,19 +28,20 @@ public:
 	Array& operator=(const Array& object);			// very important assignment operator
 
 	Array operator+(const Array& object) const;		// will return new object Array
-	void operator+(Item value);						// add some constant to all elements
-	void operator-(Item value);						// sub some constant to all elements
+	Array operator+(Item value) const;				// add some constant to all elements
+	Array operator-(Item value) const;				// sub some constant to all elements
 
 	bool operator==(const Array& object) const;		// return true if Arrays'll be equivalent
 	bool operator!=(const Array& object) const;		// return false if Arrays'll be equivalent
 
-	void operator++();								// post-increment operation to all elements
-	Array operator+=(Item value) const;
+	Array operator++(int);							// post-increment operation to all elements
+	Array operator+=(Item value);
 	Item operator[](int index) const;				// indexation
 
 	// Friends functions
 	friend std::ostream& operator<<(std::ostream& os, const Array& object);		// out in console
-	friend Array operator+(Item value, Array& object);
+	friend Array operator+(Item value, const Array& object);
+	//friend Array operator-(Item value, const Array& object);
 private:
 	int m_size;										// maximum size of array(variable)
 	int m_current_index;							// current index to last e-ment of Array

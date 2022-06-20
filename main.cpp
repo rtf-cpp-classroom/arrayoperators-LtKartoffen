@@ -1,6 +1,6 @@
 #include "Array.h"		// self created Array-class
 #include <iostream>
-
+//#define DEBUG
 int main()
 {
 	//TODO: if you want to test your Array class, write your code here
@@ -15,6 +15,8 @@ int main()
 	ar1.setArray(values, N);
 	for (int i = 0; i < N; i++)
 		ar2.setValue(values[i]);
+
+#ifdef DEBUG
 	bool eq = ar2 == ar1;
 	cout << "Eq = " << eq << endl;
 
@@ -36,15 +38,34 @@ int main()
 	int values2[N2] = { -1,0,1 };
 	ar2.setArray(values2, N2);
 	cout << "ar2: " << ar2 << endl;
-	//ar2.setValue(-100);
-	////ar2.setValue();
-	//ar2.setArray(values, N);
-	//cout << "ar2: " << ar2 << endl;
+	ar2.setValue(-100);
+	//ar2.setValue();
+	ar2.setArray(values, N);
+	cout << "ar2: " << ar2 << endl;
+#endif // DEBUG
+	cout << "Post-increment operator, ar1++\n";
+	ar1++;
+	cout <<"ar1: " << ar1 << endl;
 	cout << "Destructors and ending program\n";
 
+	cout << "Create new array by adding value 7 to ar1\n";
+	Array ar3 = 7 + ar1;
+	cout << "ar3: " << ar3 << endl;
+	cout << "ar1: " << ar1 << endl;
+
+	cout << "Create new array by subtructing value 7 to ar2\n";
+	Array ar4 = ar2-7;
+	cout << "ar4: " << ar4 << endl;
+	cout << "ar2: " << ar2 << endl;
+
+	cout << "\n\n\nar2: " << ar2 << endl;
+	ar2 += 1;
+	cout << "\n\n\nar2+=1: "<<ar2 << endl;
 	//ar1.~Array();
 	//ar2.~Array();
-
+	cout << "\n\nCreate new Array-object by adding two Array-objects:\n";
+	Array ar5 = ar1 + ar2;
+	cout << "ar5 = ar1 + ar2 : " << ar5 << endl;
 	cout << "Bye!\n";
 	system("pause");
 	return 0;

@@ -18,8 +18,11 @@ Array::Array(const Array& object)
 	if (m_current_index == 0)						// if Array empty
 		m_pointer = nullptr;
 	else
+	{
+		m_pointer = new Item[getSize()];
 		for (int i = 0; i < object.getElemSize(); i++)
 			m_pointer[i] = object.m_pointer[i];
+	}
 }
 // Assignment operator
 Array& Array::operator=(const Array& object)
@@ -47,6 +50,7 @@ Array::~Array()
 	// for debugging 
 	//std::cout << "Memory after destructor deleted succesfully\n";
 }
+
 //--------------------------------------------------------------------------------------------//
 //----------------------------Set some member value------------------------------------------//
 //------------------------------------------------------------------------------------------//
@@ -112,6 +116,7 @@ void Array::setArray(Item* pArr, int size)
 	for (int i = 0; i < size; i++)
 		this->setValue(pArr[i]);
 }
+
 //----------------------------------------------------------------------------------------------//
 //------------------------------- Overloaded operators-----------------------------------------//
 //--------------------------------------------------------------------------------------------//
@@ -122,6 +127,47 @@ Item Array::operator[](int index) const
 		return m_pointer[index];
 	return m_pointer[0];
 }
+// Post increment operation
+Array Array::operator++(int)
+{
+	for (int i = 0; i < getElemSize(); i++)
+		m_pointer[i]++;
+	return *this;
+}
+// Add some value to Array
+Array Array::operator+(Item value) const
+{
+	Array temp = *this;
+	for (int i = 0; i < temp.getElemSize(); i++)
+		temp.m_pointer[i] += value;
+	return temp;
+}
+// Sub some value from Array
+Array Array::operator-(Item value) const
+{
+	return this->operator+(-value);
+}
+// Friend function of add some value to Array
+Array operator+(Item value, const Array& object)
+{
+	return object.operator+(value);
+}
+// Self-adding operation
+Array Array::operator+=(Item value)
+{
+	for (int i = 0; i < getElemSize(); i++)
+		m_pointer[i] += value;
+	return *this;
+}
+// Adding two Array-objects and return new Array-object
+Array Array::operator+(const Array& object) const
+{
+	Array temp;
+	temp.setArray(this->m_pointer, this->getElemSize());	// first Array
+	temp.setArray(object.m_pointer, object.getElemSize());	// second Array
+	return temp;
+}
+
 //--------------------------------------------------------------------------------------------//
 //----------------------------Comparative Operators------------------------------------------//
 //------------------------------------------------------------------------------------------//
