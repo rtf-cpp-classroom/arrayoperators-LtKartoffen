@@ -1,7 +1,6 @@
 // Array.h -- definition Array-class
-#pragma once
-//#ifndef ARRAY_H_
-//#define ARRAY_H_
+#ifndef ARRAY_H_
+#define ARRAY_H_
 #include <iostream>								// input-output array
 
 typedef int Item;									// we will work with abstract type for Array - Item
@@ -53,4 +52,4 @@ private:
 	bool expandArray(int size);							// expand size of Array
 };
 
-//#endif // !ARRAY_H_
+#endif // !ARRAY_H_

@@ -46,7 +46,7 @@ int main()
 	cout << "Post-increment operator, ar1++\n";
 	ar1++;
 	cout <<"ar1: " << ar1 << endl;
-	cout << "Destructors and ending program\n";
+	//cout << "Destructors and ending program\n";
 
 	cout << "Create new array by adding value 7 to ar1\n";
 	Array ar3 = 7 + ar1;
