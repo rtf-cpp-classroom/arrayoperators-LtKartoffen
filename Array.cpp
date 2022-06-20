@@ -196,6 +196,7 @@ void Array::showElements() const
 {
 	for (int i = 0; i < getElemSize(); i++)
 		std::cout << m_pointer[i] << " ";
+	std::cout << std::endl;
 }
 // Overloadaed operator << for more convinient output
 std::ostream& operator<<(std::ostream& os, const Array& object)

@@ -65,7 +65,7 @@ int main()
 	//ar2.~Array();
 	cout << "\n\nCreate new Array-object by adding two Array-objects:\n";
 	Array ar5 = ar1 + ar2;
-	cout << "ar5 = ar1 + ar2 : " << ar5 << endl;
+	cout << "ar5 = ar1 + ar2 : " << ar5;
 	cout << "Bye!\n";
 	system("pause");
 	return 0;
